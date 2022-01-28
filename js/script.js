@@ -22,6 +22,7 @@ Vue.config.devtools = true;
 var app5 = new Vue({
     el: '#root',
     data:{
+      addtodo:'',
       todos:[
        {
             text:"Andare a fare la spesa",
@@ -45,7 +46,31 @@ var app5 = new Vue({
     {
       removeTodo(index)
       {
-         this.todos.splice(index,1);
+         this.todos = this.todos.filter((todo,i) => i!==index );
+      },
+      addTodo()
+      {
+         if(this.addtodo.trim())
+         {
+            const objectTodo =
+            {
+               text: this.addtodo,
+               done:false
+            };
+            this.todos.push(objectTodo);
+         }
+      
+         this.addtodo = '';
+      },
+       toggleTodo(index)
+      {
+         this.todos = this.todos.map((todo,i) => {
+
+            if(i === index)
+            {
+               todo.done = !todo.done;
+            }
+         });
       }
     },
      

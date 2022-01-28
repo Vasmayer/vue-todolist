@@ -16,16 +16,18 @@
         <div class="container">
             <div id="root">
                 <div class="input-group my-3">
-                    <input type="text" class="form-control fs-2">
-                    <button class="btn btn-outline-success" type="button"><i class="fas fa-plus fa-3x"></i></button>
+                    <input type="text" class="form-control fs-2" v-model="addtodo">
+                    <button class="btn btn-outline-success" type="button" @click="addTodo()"><i class="fas fa-plus fa-3x"></i></button>
                 </div>
                 <ul class="list-group">
-                    <li v-for="(todo,i) in todos" class="list-group-item d-flex justify-content-between align-items-center">
-                      <span class="badge rounded-pill" :class="todo.done ? 'bg-success':'bg-light'"><i class="fas fa-check fa-2x"></i></span>
-                      <div class="ms-2">
-                        <div class="fw-bold" :class="todo.done ? 'line-through':''">{{todo.text}}</div>
-                      </div>
-                      <button type="button" class="btn-close" @click="removeTodo(i)"></button>
+                    <li v-for="(todo,i) in todos" class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center" @click="toggleTodo(i)">
+                          <span class="badge rounded-pill" :class="todo.done ? 'bg-success':'bg-light'"><i class="fas fa-check fa-2x"></i></span>
+                          <div class="ms-2">
+                              <div class="fw-bold" :class="todo.done ? 'line-through':''">{{todo.text}}</div>
+                          </div>
+                          <button type="button" class="btn-close" @click="removeTodo(i)"></button>
+                        </div>
                     </li>
                 </ul> 
             </div>
