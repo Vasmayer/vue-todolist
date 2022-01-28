@@ -25,7 +25,7 @@
                       <div class="ms-2">
                         <div class="fw-bold" :class="todo.done ? 'line-through':''">{{todo.text}}</div>
                       </div>
-                      <button type="button" class="btn-close"></button>
+                      <button type="button" class="btn-close" @click="removeTodo(i)"></button>
                     </li>
                 </ul> 
             </div>
