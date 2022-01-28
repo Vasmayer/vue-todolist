@@ -46,7 +46,9 @@ var app5 = new Vue({
     {
       removeTodo(index)
       {
-         this.todos = this.todos.filter((todo,i) => i!==index );
+          this.todos = this.todos.filter((todo,i) => i!==index ); 
+         console.log(this.todos);
+
       },
       addTodo()
       {
@@ -62,7 +64,7 @@ var app5 = new Vue({
       
          this.addtodo = '';
       },
-       toggleTodo(index)
+      toggleTodo(index)
       {
          this.todos = this.todos.map((todo,i) => {
 
@@ -70,6 +72,7 @@ var app5 = new Vue({
             {
                todo.done = !todo.done;
             }
+            return todo;
          });
       }
     },
