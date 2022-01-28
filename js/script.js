@@ -13,15 +13,17 @@ MILESTONE 3
 Predisporre un campo di input testuale e un pulsante "aggiungi": cliccando sul pulsante, il testo digitato viene letto e utilizzato per creare un nuovo todo, che quindi viene aggiunto alla lista dei todo esistenti.
 Bonus:
 1- oltre al click sul pulsante, intercettare anche il tasto ENTER per aggiungere il todo alla lista
-2- cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente (se done era uguale a false, impostare true e viceversa)
+2- cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente
+    (se done era uguale a false, impostare true e viceversa)
 Buon lavoro e buon weekend ragazzi!
  */
 
 Vue.config.devtools = true;
 
-var app5 = new Vue({
+var root = new Vue({
     el: '#root',
     data:{
+      all:false,
       addtodo:'',
       todos:[
        {
@@ -46,9 +48,7 @@ var app5 = new Vue({
     {
       removeTodo(index)
       {
-          this.todos = this.todos.filter((todo,i) => i!==index ); 
-         console.log(this.todos);
-
+         if(this.todos.lenght !== 0) this.todos.splice(index,1);
       },
       addTodo()
       {
@@ -64,17 +64,36 @@ var app5 = new Vue({
       
          this.addtodo = '';
       },
-      toggleTodo(index)
+       toggleTodo(index)
       {
-         this.todos = this.todos.map((todo,i) => {
+             this.todos[index].done = !this.todos[index].done
+      } ,
+      toggleAllTodos(index)
+      {
+            this.all = !this.all
+               const newArray = this.todos.map((todo)=>{
 
-            if(i === index)
-            {
-               todo.done = !todo.done;
-            }
-            return todo;
-         });
+                  if(this.all)
+                  {
+                     todo.done = true;
+
+                  }
+                  else
+                  {
+                     todo.done = false;
+                  }
+
+                  return todo;
+               });
+
+               this.todos = newArray;
+ 
+      } ,
+      deleteTodos()
+      {
+         this.todos = '';
       }
+      
     },
      
   })
