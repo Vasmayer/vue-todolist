@@ -7,3 +7,9 @@ header
     justify-content: space-around;
     align-items: center;
 }
+
+
+.line-through
+{
+    text-decoration-line: line-through; 
+}
